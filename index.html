@@ -78,45 +78,46 @@
 </head>
 <body class="font-sans text-dark antialiased selection:bg-gold selection:text-black">
 
-    <!-- БЛОК 1: HERO -->
-    <section class="relative min-h-screen flex items-center justify-center py-12 lg:py-0 overflow-hidden">
+    <!-- БЛОК 1: HERO (ТЕКСТ ВЫШЕ ФОТО) -->
+    <section class="relative min-h-screen pt-16 pb-12 overflow-hidden flex flex-col justify-center">
+        <!-- Декор фона -->
         <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-white rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 opacity-60"></div>
 
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="flex flex-col items-center text-center">
                 
-                <!-- Фото Анны -->
-                <div class="relative order-1 lg:order-1 fade-in-section">
-                    <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-[8px] border-white aspect-[4/5] max-w-md mx-auto transform hover:scale-[1.02] transition-all duration-700">
-                        <img src="photo_2_2026-01-23_15-44-28.jpg" alt="Анна Испания" class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-6 pt-20">
-                            <p class="text-white font-script text-3xl opacity-90">Malaga, Spain</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Текст -->
-                <div class="order-2 lg:order-2 text-center lg:text-left fade-in-section">
-                    <h1 class="text-4xl lg:text-6xl font-semibold leading-[1.15] mb-6 text-dark">
+                <!-- 1. ТЕКСТ (Сверху) -->
+                <div class="max-w-4xl mx-auto mb-12 fade-in-section z-20">
+                    <h1 class="text-4xl lg:text-7xl font-semibold leading-[1.15] mb-6 text-dark">
                         Как новичку сделать изделие из <br>
                         <span class="text-gold-bordered font-bold tracking-wide">ЭПОКСИДНОЙ СМОЛЫ</span>
                         <span class="font-script text-5xl lg:text-7xl text-dark block mt-4">и легко продать его?</span>
                     </h1>
-                    <p class="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
+                    <p class="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto font-light">
                         В моем уроке делюсь своей историей и тем, как именно эпоксидная смола изменила мою жизнь и позволила мне заниматься любимым делом и при этом зарабатывать и наслаждаться жизнью.
                     </p>
                     
-                    <!-- Ссылка на YouTube -->
                     <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="inline-flex items-center justify-center px-12 py-5 text-lg font-medium tracking-wider text-white transition-all duration-300 bg-gold rounded-full hover:bg-[#b5952f] shadow-glow hover:-translate-y-1 group">
                         СМОТРЕТЬ УРОК
                         <i class="fa-solid fa-play ml-3 text-sm group-hover:scale-125 transition-transform"></i>
                     </a>
                 </div>
+
+                <!-- 2. ФОТО (Снизу) -->
+                <div class="relative w-full max-w-lg mx-auto fade-in-section z-10">
+                    <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-[8px] border-white transform hover:scale-[1.02] transition-all duration-700">
+                        <img src="photo_2_2026-01-23_15-44-28.jpg" alt="Анна Испания" class="w-full h-auto object-cover block">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-6 pt-20">
+                            <p class="text-white font-script text-3xl opacity-90 text-left">Malaga, Spain</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- БЛОК 2: БОЛИ -->
+    <!-- БЛОК 2: БОЛИ (БЕЛЫЕ КАРТОЧКИ НА ЖЕЛТОМ ФОНЕ) -->
     <section class="py-24 bg-gold text-black relative">
         <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
         
@@ -128,36 +129,43 @@
 
             <!-- Список проблем -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 fade-in-section">
-                <!-- Пункты -->
-                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                <!-- Пункт 1 -->
+                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-xmark text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Я не понимаю, с чего начать и какую смолу выбрать.</p>
                 </div>
-                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                <!-- Пункт 2 -->
+                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-pause text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Слишком много вариантов и советов, из-за этого постоянный стоп и откладывание.</p>
                 </div>
-                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                <!-- Пункт 3 -->
+                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-triangle-exclamation text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Я уже пробовала, но результат плохой — пузыри, мутность, трещины.</p>
                 </div>
-                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                <!-- Пункт 4 -->
+                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-regular fa-circle-question text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Есть ощущение, что делаешь что-то не так, но непонятно — что именно.</p>
                 </div>
-                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                <!-- Пункт 5 -->
+                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-brain text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">После видео и уроков в интернете в голове только больше хаоса.</p>
                 </div>
-                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                <!-- Пункт 6 -->
+                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-puzzle-piece text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Информации много, но она противоречивая и не складывается в систему.</p>
                 </div>
-                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                <!-- Пункт 7 -->
+                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-sack-dollar text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Я не понимаю, как из этого делают деньги и находят клиентов.</p>
                 </div>
-                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                <!-- Пункт 8 -->
+                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-scale-unbalanced text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Где грань между «хобби для себя» и работой, за которую реально платят.</p>
                 </div>
@@ -168,7 +176,6 @@
                 <p class="text-xl md:text-2xl text-black font-medium leading-relaxed italic mb-8 font-serif">
                     «Я тоже с этим сталкивалась в начале своей карьеры. И именно поэтому я создала для вас бесплатный урок, где рассказала поэтапно с чего тебе нужно стартовать уже сегодня»
                 </p>
-                <!-- Ссылка на YouTube -->
                 <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="inline-block px-14 py-5 bg-black text-white text-lg font-bold rounded-full hover:bg-gray-800 hover:shadow-2xl transition-all hover:-translate-y-1">
                     СМОТРЕТЬ УРОК
                 </a>
@@ -224,7 +231,7 @@
         </div>
     </section>
 
-    <!-- БЛОК 4: ЭКСПЕРТ -->
+    <!-- БЛОК 4: ЭКСПЕРТ (ЦВЕТНОЕ ФОТО) -->
     <section class="py-24 bg-dark text-white relative overflow-hidden">
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold rounded-full blur-[150px] opacity-20"></div>
 
@@ -267,7 +274,6 @@
                         <p class="text-white text-xl font-light">...Я показываю, как на этом зарабатывают.»</p>
                     </div>
 
-                    <!-- Ссылка на YouTube -->
                     <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="inline-block px-12 py-4 bg-white text-dark font-bold rounded-full hover:bg-gold hover:text-white transition-all shadow-glow hover:-translate-y-1 tracking-wide">
                         СМОТРЕТЬ УРОК
                     </a>
@@ -276,7 +282,7 @@
         </div>
     </section>
 
-    <!-- БЛОК 5: ОТЗЫВЫ -->
+    <!-- БЛОК 5: ОТЗЫВЫ (6 ФОТО) -->
     <section class="py-24">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 fade-in-section">
@@ -284,30 +290,24 @@
                 <p class="text-gray-500 uppercase tracking-widest text-xs font-bold">Листайте, чтобы увидеть больше</p>
             </div>
 
-            <div class="flex overflow-x-auto md:grid md:grid-cols-4 gap-6 px-4 pb-10 hide-scroll fade-in-section">
-                <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+            <div class="flex overflow-x-auto md:grid md:grid-cols-3 lg:grid-cols-3 gap-6 px-4 pb-10 hide-scroll fade-in-section justify-center">
+                <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
                     <img src="photo_10_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
-                <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
                     <img src="photo_11_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
-                <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
                     <img src="photo_12_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
-                <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
                     <img src="photo_13_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
-                 <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                 <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
                     <img src="photo_2026-01-24_19-15-52.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
-                 <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                 <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
                     <img src="photo_4_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
-                </div>
-                 <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img src="photo_5_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
-                </div>
-                 <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img src="photo_6_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
             </div>
         </div>
@@ -323,7 +323,6 @@
             
             <div class="relative inline-block group">
                 <div class="absolute inset-0 bg-gold rounded-full blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse"></div>
-                <!-- Ссылка на YouTube -->
                 <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="relative inline-block px-16 py-6 text-xl font-bold tracking-widest text-white bg-gold rounded-full shadow-2xl hover:bg-[#b5952f] transition-all transform hover:-translate-y-1">
                     СМОТРЕТЬ УРОК
                 </a>
