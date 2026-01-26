@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResinStart - Бесплатный урок от Анны</title>
+    
+    <!-- Подключение шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Иконки FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Настройка стилей Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#D4AF37', 
+                        dark: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        script: ['Pinyon Script', 'cursive'],
+                    },
+                    boxShadow: {
+                        'glow': '0 4px 20px rgba(212, 175, 55, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        /* Глобальный фон: градиент от серого к белому */
+        body {
+            background: linear-gradient(to right, #e5e7eb 0%, #f3f4f6 30%, #ffffff 100%);
+        }
+        
+        /* Анимация появления блоков */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Кастомный скроллбар */
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Класс для золотого текста с серым ободком */
+        .text-gold-bordered {
+            color: #D4AF37;
+            text-shadow: 
+                -1px -1px 0 #9ca3af,  
+                 1px -1px 0 #9ca3af,
+                -1px  1px 0 #9ca3af,
+                 1px  1px 0 #9ca3af;
+        }
+
+        .font-script {
+            font-weight: 400 !important;
+        }
+    </style>
+</head>
+<body class="font-sans text-dark antialiased selection:bg-gold selection:text-black">
+
+    <!-- БЛОК 1: HERO -->
+    <section class="relative min-h-screen flex items-center justify-center py-12 lg:py-0 overflow-hidden">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-white rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 opacity-60"></div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Фото Анны -->
+                <div class="relative order-1 lg:order-1 fade-in-section">
+                    <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-[8px] border-white aspect-[4/5] max-w-md mx-auto transform hover:scale-[1.02] transition-all duration-700">
+                        <img src="photo_2_2026-01-23_15-44-28.jpg" alt="Анна Испания" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-6 pt-20">
+                            <p class="text-white font-script text-3xl opacity-90">Malaga, Spain</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Текст -->
+                <div class="order-2 lg:order-2 text-center lg:text-left fade-in-section">
+                    <h1 class="text-4xl lg:text-6xl font-semibold leading-[1.15] mb-6 text-dark">
+                        Как новичку сделать изделие из <br>
+                        <span class="text-gold-bordered font-bold tracking-wide">ЭПОКСИДНОЙ СМОЛЫ</span>
+                        <span class="font-script text-5xl lg:text-7xl text-dark block mt-4">и легко продать его?</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
+                        В моем уроке делюсь своей историей и тем, как именно эпоксидная смола изменила мою жизнь и позволила мне заниматься любимым делом и при этом зарабатывать и наслаждаться жизнью.
+                    </p>
+                    
+                    <!-- Ссылка на YouTube -->
+                    <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="inline-flex items-center justify-center px-12 py-5 text-lg font-medium tracking-wider text-white transition-all duration-300 bg-gold rounded-full hover:bg-[#b5952f] shadow-glow hover:-translate-y-1 group">
+                        СМОТРЕТЬ УРОК
+                        <i class="fa-solid fa-play ml-3 text-sm group-hover:scale-125 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 2: БОЛИ -->
+    <section class="py-24 bg-gold text-black relative">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+        
+        <div class="container mx-auto px-4 max-w-5xl relative z-10">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Знакомая <span class="font-script text-6xl md:text-7xl font-normal relative top-2">ситуация?</span></h2>
+                <div class="w-24 h-1 bg-black mx-auto rounded-full mt-4 opacity-20"></div>
+            </div>
+
+            <!-- Список проблем -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 fade-in-section">
+                <!-- Пункты -->
+                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                    <i class="fa-solid fa-xmark text-black text-2xl mt-1 mr-5"></i>
+                    <p class="text-black text-lg font-medium leading-snug">Я не понимаю, с чего начать и какую смолу выбрать.</p>
+                </div>
+                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                    <i class="fa-solid fa-pause text-black text-2xl mt-1 mr-5"></i>
+                    <p class="text-black text-lg font-medium leading-snug">Слишком много вариантов и советов, из-за этого постоянный стоп и откладывание.</p>
+                </div>
+                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                    <i class="fa-solid fa-triangle-exclamation text-black text-2xl mt-1 mr-5"></i>
+                    <p class="text-black text-lg font-medium leading-snug">Я уже пробовала, но результат плохой — пузыри, мутность, трещины.</p>
+                </div>
+                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                    <i class="fa-regular fa-circle-question text-black text-2xl mt-1 mr-5"></i>
+                    <p class="text-black text-lg font-medium leading-snug">Есть ощущение, что делаешь что-то не так, но непонятно — что именно.</p>
+                </div>
+                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                    <i class="fa-solid fa-brain text-black text-2xl mt-1 mr-5"></i>
+                    <p class="text-black text-lg font-medium leading-snug">После видео и уроков в интернете в голове только больше хаоса.</p>
+                </div>
+                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                    <i class="fa-solid fa-puzzle-piece text-black text-2xl mt-1 mr-5"></i>
+                    <p class="text-black text-lg font-medium leading-snug">Информации много, но она противоречивая и не складывается в систему.</p>
+                </div>
+                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                    <i class="fa-solid fa-sack-dollar text-black text-2xl mt-1 mr-5"></i>
+                    <p class="text-black text-lg font-medium leading-snug">Я не понимаю, как из этого делают деньги и находят клиентов.</p>
+                </div>
+                <div class="flex items-start border border-black/20 p-6 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors duration-300">
+                    <i class="fa-solid fa-scale-unbalanced text-black text-2xl mt-1 mr-5"></i>
+                    <p class="text-black text-lg font-medium leading-snug">Где грань между «хобби для себя» и работой, за которую реально платят.</p>
+                </div>
+            </div>
+
+            <!-- Блок Анны -->
+            <div class="bg-black/10 backdrop-blur-sm p-8 md:p-12 rounded-3xl text-center fade-in-section border border-black/5">
+                <p class="text-xl md:text-2xl text-black font-medium leading-relaxed italic mb-8 font-serif">
+                    «Я тоже с этим сталкивалась в начале своей карьеры. И именно поэтому я создала для вас бесплатный урок, где рассказала поэтапно с чего тебе нужно стартовать уже сегодня»
+                </p>
+                <!-- Ссылка на YouTube -->
+                <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="inline-block px-14 py-5 bg-black text-white text-lg font-bold rounded-full hover:bg-gray-800 hover:shadow-2xl transition-all hover:-translate-y-1">
+                    СМОТРЕТЬ УРОК
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 3: РЕЗУЛЬТАТ -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="absolute -right-20 top-40 opacity-10 rotate-[-12deg]">
+            <img src="photo_3_2026-01-23_15-44-28.jpg" class="w-80 rounded-full shadow-2xl">
+        </div>
+
+        <div class="container mx-auto px-4 max-w-6xl relative z-10">
+            <div class="text-center mb-20 fade-in-section">
+                <p class="font-script text-5xl text-gold-bordered mb-2">Что ты получишь?</p>
+                <h2 class="text-4xl md:text-5xl font-semibold text-dark mt-4">Твой результат после урока</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="group p-10 rounded-3xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl hover:border-gold/30 transition-all duration-300 fade-in-section">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center text-gold text-2xl mb-8 group-hover:bg-gold group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 uppercase tracking-wider text-dark">Понятность в материалах</h3>
+                    <p class="text-gray-600 font-light text-lg">Ты разберёшься, какую смолу выбирать и за что она отвечает, чтобы не покупать лишнее и не действовать наугад.</p>
+                </div>
+
+                <div class="group p-10 rounded-3xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl hover:border-gold/30 transition-all duration-300 fade-in-section" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center text-gold text-2xl mb-8 group-hover:bg-gold group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-bug"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 uppercase tracking-wider text-dark">Понимание ошибок</h3>
+                    <p class="text-gray-600 font-light text-lg">Ты увидишь, почему результат не получался раньше: откуда берутся пузыри, мутность и трещины.</p>
+                </div>
+
+                <div class="group p-10 rounded-3xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl hover:border-gold/30 transition-all duration-300 fade-in-section" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center text-gold text-2xl mb-8 group-hover:bg-gold group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 uppercase tracking-wider text-dark">Чёткая картина</h3>
+                    <p class="text-gray-600 font-light text-lg">У тебя сложится логика всего процесса — от первых изделий до понимания, как это превращается в заказы.</p>
+                </div>
+
+                <div class="group p-10 rounded-3xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl hover:border-gold/30 transition-all duration-300 fade-in-section" style="transition-delay: 300ms;">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center text-gold text-2xl mb-8 group-hover:bg-gold group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 uppercase tracking-wider text-dark">Понимание дохода</h3>
+                    <p class="text-gray-600 font-light text-lg">Ты поймёшь, как формируется стоимость изделий и за что клиенты готовы платить, на примере реальных заказов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 4: ЭКСПЕРТ -->
+    <section class="py-24 bg-dark text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold rounded-full blur-[150px] opacity-20"></div>
+
+        <div class="container mx-auto px-4 max-w-6xl relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <!-- Фото Эксперта -->
+                <div class="w-full lg:w-5/12 fade-in-section">
+                    <div class="relative group">
+                        <!-- Золотая рамка -->
+                        <div class="absolute inset-0 border-2 border-gold rounded-tr-[50px] rounded-bl-[50px] translate-x-3 translate-y-3 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform"></div>
+                        <!-- Фото цветное -->
+                        <img src="photo_1_2026-01-23_15-44-28.jpg" alt="Анна Resin Artist" class="relative w-full rounded-tr-[50px] rounded-bl-[50px] shadow-2xl transition-all duration-700">
+                    </div>
+                </div>
+
+                <!-- Текст -->
+                <div class="w-full lg:w-7/12 fade-in-section">
+                    <h2 class="text-gold font-bold text-sm tracking-[0.3em] mb-4 uppercase">Автор курса</h2>
+                    <h3 class="font-script text-7xl mb-4 text-white">Анна</h3>
+                    <p class="text-2xl font-light text-gray-300 mb-10">Практикующий resin-artist | Основатель <span class="text-white font-medium border-b border-gold">ResinStart</span></p>
+
+                    <ul class="space-y-6 mb-12">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-bolt text-gold text-xl mr-5 mt-1"></i>
+                            <p class="text-gray-300 text-lg font-light">Работает с эпоксидной смолой и реальными заказами, а не «для себя»</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-bolt text-gold text-xl mr-5 mt-1"></i>
+                            <p class="text-gray-300 text-lg font-light">Выполняет сложные изделия: часы-карты, интерьер, свадебный декор</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-bolt text-gold text-xl mr-5 mt-1"></i>
+                            <p class="text-gray-300 text-lg font-light">Монетизирует творчество через Instagram и TikTok, заказы — до 230 € за изделие</p>
+                        </li>
+                    </ul>
+
+                    <div class="border-l-2 border-gold pl-8 py-2 mb-12 opacity-80">
+                        <p class="font-script text-4xl text-gold mb-2">«Я не учу красиво заливать...</p>
+                        <p class="text-white text-xl font-light">...Я показываю, как на этом зарабатывают.»</p>
+                    </div>
+
+                    <!-- Ссылка на YouTube -->
+                    <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="inline-block px-12 py-4 bg-white text-dark font-bold rounded-full hover:bg-gold hover:text-white transition-all shadow-glow hover:-translate-y-1 tracking-wide">
+                        СМОТРЕТЬ УРОК
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 5: ОТЗЫВЫ -->
+    <section class="py-24">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="font-script text-6xl text-gold-bordered mb-4">Отзывы</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs font-bold">Листайте, чтобы увидеть больше</p>
+            </div>
+
+            <div class="flex overflow-x-auto md:grid md:grid-cols-4 gap-6 px-4 pb-10 hide-scroll fade-in-section">
+                <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                    <img src="photo_10_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                </div>
+                <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                    <img src="photo_11_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                </div>
+                <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                    <img src="photo_12_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                </div>
+                <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                    <img src="photo_13_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                </div>
+                 <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                    <img src="photo_2026-01-24_19-15-52.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                </div>
+                 <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                    <img src="photo_4_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                </div>
+                 <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                    <img src="photo_5_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                </div>
+                 <div class="min-w-[260px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
+                    <img src="photo_6_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 6: ФИНАЛ -->
+    <section class="py-24 bg-white relative">
+        <div class="container mx-auto px-4 relative z-10 text-center max-w-4xl fade-in-section">
+            <h2 class="text-3xl md:text-5xl font-semibold mb-12 leading-tight text-dark">
+                Этот урок не о быстром и легком результате, этот урок о <br>
+                <span class="text-gold-bordered font-script text-6xl block mt-4 p-2">годах наработанной практики.</span>
+            </h2>
+            
+            <div class="relative inline-block group">
+                <div class="absolute inset-0 bg-gold rounded-full blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse"></div>
+                <!-- Ссылка на YouTube -->
+                <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="relative inline-block px-16 py-6 text-xl font-bold tracking-widest text-white bg-gold rounded-full shadow-2xl hover:bg-[#b5952f] transition-all transform hover:-translate-y-1">
+                    СМОТРЕТЬ УРОК
+                </a>
+            </div>
+
+            <p class="mt-16 text-gray-400 font-script text-3xl opacity-60">Anna & ResinStart © 2024</p>
+        </div>
+    </section>
+
+    <!-- Скрипт анимации -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
