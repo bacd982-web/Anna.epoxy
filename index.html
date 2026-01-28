@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ResinStart - Бесплатный урок от Анны</title>
     
-    <!-- Подключение шрифтов -->
+    <!-- Подключение шрифтов (Только Outfit и Pinyon Script) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -15,6 +15,10 @@
     
     <!-- Иконки FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Библиотека для телефона (intl-tel-input) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 
     <!-- Настройка стилей Tailwind -->
     <script>
@@ -31,6 +35,17 @@
                     },
                     boxShadow: {
                         'glow': '0 4px 20px rgba(212, 175, 55, 0.4)',
+                    },
+                    animation: {
+                        'shake': 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both',
+                    },
+                    keyframes: {
+                        'shake': {
+                            '10%, 90%': { transform: 'translate3d(-1px, 0, 0)' },
+                            '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
+                            '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' },
+                            '40%, 60%': { transform: 'translate3d(4px, 0, 0)' }
+                        }
                     }
                 }
             }
@@ -40,12 +55,10 @@
     <style>
         html { scroll-behavior: smooth; }
         
-        /* Глобальный фон: градиент от серого к белому */
         body {
             background: linear-gradient(to right, #e5e7eb 0%, #f3f4f6 30%, #ffffff 100%);
         }
         
-        /* Анимация появления блоков */
         .fade-in-section {
             opacity: 0;
             transform: translateY(30px);
@@ -57,58 +70,58 @@
             transform: none;
         }
 
-        /* Кастомный скроллбар */
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Класс для золотого текста с серым ободком */
-        .text-gold-bordered {
+        /* Убрал серую обводку, оставил только цвет */
+        .text-gold-pure {
             color: #D4AF37;
-            text-shadow: 
-                -1px -1px 0 #9ca3af,  
-                 1px -1px 0 #9ca3af,
-                -1px  1px 0 #9ca3af,
-                 1px  1px 0 #9ca3af;
         }
 
-        .font-script {
-            font-weight: 400 !important;
+        .font-script { font-weight: 400 !important; }
+
+        /* Стили для инпута телефона */
+        .iti { width: 100%; }
+        .iti__flag { background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/img/flags.png"); }
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          .iti__flag { background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/img/flags@2x.png"); }
         }
     </style>
 </head>
 <body class="font-sans text-dark antialiased selection:bg-gold selection:text-black">
 
-    <!-- БЛОК 1: HERO (ТЕКСТ ВЫШЕ ФОТО) -->
+    <!-- БЛОК 1: HERO -->
     <section class="relative min-h-screen pt-16 pb-12 overflow-hidden flex flex-col justify-center">
-        <!-- Декор фона -->
         <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-white rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 opacity-60"></div>
 
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col items-center text-center">
                 
-                <!-- 1. ТЕКСТ (Сверху) -->
+                <!-- ТЕКСТ -->
                 <div class="max-w-4xl mx-auto mb-12 fade-in-section z-20">
                     <h1 class="text-4xl lg:text-7xl font-semibold leading-[1.15] mb-6 text-dark">
                         Как новичку сделать изделие из <br>
-                        <span class="text-gold-bordered font-bold tracking-wide">ЭПОКСИДНОЙ СМОЛЫ</span>
+                        <!-- Убрал обводку, теперь чистый золотой цвет -->
+                        <span class="text-gold-pure font-bold tracking-wide">ЭПОКСИДНОЙ СМОЛЫ</span>
                         <span class="font-script text-5xl lg:text-7xl text-dark block mt-4">и легко продать его?</span>
                     </h1>
                     <p class="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto font-light">
                         В моем уроке делюсь своей историей и тем, как именно эпоксидная смола изменила мою жизнь и позволила мне заниматься любимым делом и при этом зарабатывать и наслаждаться жизнью.
                     </p>
                     
-                    <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="inline-flex items-center justify-center px-12 py-5 text-lg font-medium tracking-wider text-white transition-all duration-300 bg-gold rounded-full hover:bg-[#b5952f] shadow-glow hover:-translate-y-1 group">
+                    <button onclick="openModal()" class="inline-flex items-center justify-center px-12 py-5 text-lg font-medium tracking-wider text-white transition-all duration-300 bg-gold rounded-full hover:bg-[#b5952f] shadow-glow hover:-translate-y-1 group">
                         СМОТРЕТЬ УРОК
                         <i class="fa-solid fa-play ml-3 text-sm group-hover:scale-125 transition-transform"></i>
-                    </a>
+                    </button>
                 </div>
 
-                <!-- 2. ФОТО (Снизу) -->
+                <!-- ФОТО -->
                 <div class="relative w-full max-w-lg mx-auto fade-in-section z-10">
                     <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-[8px] border-white transform hover:scale-[1.02] transition-all duration-700">
                         <img src="photo_2_2026-01-23_15-44-28.jpg" alt="Анна Испания" class="w-full h-auto object-cover block">
                         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-6 pt-20">
-                            <p class="text-white font-script text-3xl opacity-90 text-left">Malaga, Spain</p>
+                            <!-- Исправил Malaga на Málaga -->
+                            <p class="text-white font-script text-3xl opacity-90 text-left">Málaga, Spain</p>
                         </div>
                     </div>
                 </div>
@@ -117,7 +130,7 @@
         </div>
     </section>
 
-    <!-- БЛОК 2: БОЛИ (БЕЛЫЕ КАРТОЧКИ НА ЖЕЛТОМ ФОНЕ) -->
+    <!-- БЛОК 2: БОЛИ -->
     <section class="py-24 bg-gold text-black relative">
         <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
         
@@ -127,58 +140,50 @@
                 <div class="w-24 h-1 bg-black mx-auto rounded-full mt-4 opacity-20"></div>
             </div>
 
-            <!-- Список проблем -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 fade-in-section">
-                <!-- Пункт 1 -->
                 <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-xmark text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Я не понимаю, с чего начать и какую смолу выбрать.</p>
                 </div>
-                <!-- Пункт 2 -->
                 <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-pause text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Слишком много вариантов и советов, из-за этого постоянный стоп и откладывание.</p>
                 </div>
-                <!-- Пункт 3 -->
                 <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-triangle-exclamation text-black text-2xl mt-1 mr-5"></i>
-                    <p class="text-black text-lg font-medium leading-snug">Я уже пробовала, но результат плохой — пузыри, мутность, трещины.</p>
+                    <!-- Заменил "трещины" на "аминная плёнка" -->
+                    <p class="text-black text-lg font-medium leading-snug">Я уже пробовала, но результат плохой — пузыри, мутность, аминная плёнка.</p>
                 </div>
-                <!-- Пункт 4 -->
                 <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-regular fa-circle-question text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Есть ощущение, что делаешь что-то не так, но непонятно — что именно.</p>
                 </div>
-                <!-- Пункт 5 -->
                 <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-brain text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">После видео и уроков в интернете в голове только больше хаоса.</p>
                 </div>
-                <!-- Пункт 6 -->
                 <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-puzzle-piece text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Информации много, но она противоречивая и не складывается в систему.</p>
                 </div>
-                <!-- Пункт 7 -->
                 <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-sack-dollar text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Я не понимаю, как из этого делают деньги и находят клиентов.</p>
                 </div>
-                <!-- Пункт 8 -->
                 <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-scale-unbalanced text-black text-2xl mt-1 mr-5"></i>
                     <p class="text-black text-lg font-medium leading-snug">Где грань между «хобби для себя» и работой, за которую реально платят.</p>
                 </div>
             </div>
 
-            <!-- Блок Анны -->
             <div class="bg-black/10 backdrop-blur-sm p-8 md:p-12 rounded-3xl text-center fade-in-section border border-black/5">
-                <p class="text-xl md:text-2xl text-black font-medium leading-relaxed italic mb-8 font-serif">
+                <!-- Убрал font-serif (третий шрифт), заменил на italic (тот же шрифт но курсив) -->
+                <p class="text-xl md:text-2xl text-black font-medium leading-relaxed italic mb-8">
                     «Я тоже с этим сталкивалась в начале своей карьеры. И именно поэтому я создала для вас бесплатный урок, где рассказала поэтапно с чего тебе нужно стартовать уже сегодня»
                 </p>
-                <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="inline-block px-14 py-5 bg-black text-white text-lg font-bold rounded-full hover:bg-gray-800 hover:shadow-2xl transition-all hover:-translate-y-1">
+                <button onclick="openModal()" class="inline-block px-14 py-5 bg-black text-white text-lg font-bold rounded-full hover:bg-gray-800 hover:shadow-2xl transition-all hover:-translate-y-1">
                     СМОТРЕТЬ УРОК
-                </a>
+                </button>
             </div>
         </div>
     </section>
@@ -186,12 +191,13 @@
     <!-- БЛОК 3: РЕЗУЛЬТАТ -->
     <section class="py-24 relative overflow-hidden">
         <div class="absolute -right-20 top-40 opacity-10 rotate-[-12deg]">
-            <img src="photo_3_2026-01-23_15-44-28.jpg" class="w-80 rounded-full shadow-2xl">
+            <img loading="lazy" src="photo_3_2026-01-23_15-44-28.jpg" class="w-80 rounded-full shadow-2xl">
         </div>
 
         <div class="container mx-auto px-4 max-w-6xl relative z-10">
             <div class="text-center mb-20 fade-in-section">
-                <p class="font-script text-5xl text-gold-bordered mb-2">Что ты получишь?</p>
+                <!-- Убрал обводку и здесь для консистентности -->
+                <p class="font-script text-5xl text-gold-pure mb-2">Что ты получишь?</p>
                 <h2 class="text-4xl md:text-5xl font-semibold text-dark mt-4">Твой результат после урока</h2>
             </div>
 
@@ -231,7 +237,7 @@
         </div>
     </section>
 
-    <!-- БЛОК 4: ЭКСПЕРТ (ЦВЕТНОЕ ФОТО) -->
+    <!-- БЛОК 4: ЭКСПЕРТ -->
     <section class="py-24 bg-dark text-white relative overflow-hidden">
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold rounded-full blur-[150px] opacity-20"></div>
 
@@ -241,10 +247,8 @@
                 <!-- Фото Эксперта -->
                 <div class="w-full lg:w-5/12 fade-in-section">
                     <div class="relative group">
-                        <!-- Золотая рамка -->
                         <div class="absolute inset-0 border-2 border-gold rounded-tr-[50px] rounded-bl-[50px] translate-x-3 translate-y-3 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform"></div>
-                        <!-- Фото цветное -->
-                        <img src="photo_1_2026-01-23_15-44-28.jpg" alt="Анна Resin Artist" class="relative w-full rounded-tr-[50px] rounded-bl-[50px] shadow-2xl transition-all duration-700">
+                        <img loading="lazy" src="photo_1_2026-01-23_15-44-28.jpg" alt="Анна Resin Artist" class="relative w-full rounded-tr-[50px] rounded-bl-[50px] shadow-2xl transition-all duration-700">
                     </div>
                 </div>
 
@@ -274,40 +278,41 @@
                         <p class="text-white text-xl font-light">...Я показываю, как на этом зарабатывают.»</p>
                     </div>
 
-                    <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="inline-block px-12 py-4 bg-white text-dark font-bold rounded-full hover:bg-gold hover:text-white transition-all shadow-glow hover:-translate-y-1 tracking-wide">
+                    <button onclick="openModal()" class="inline-block px-12 py-4 bg-white text-dark font-bold rounded-full hover:bg-gold hover:text-white transition-all shadow-glow hover:-translate-y-1 tracking-wide">
                         СМОТРЕТЬ УРОК
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- БЛОК 5: ОТЗЫВЫ (6 ФОТО) -->
+    <!-- БЛОК 5: ОТЗЫВЫ -->
     <section class="py-24">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 fade-in-section">
-                <h2 class="font-script text-6xl text-gold-bordered mb-4">Отзывы</h2>
+                <!-- Убрал обводку -->
+                <h2 class="font-script text-6xl text-gold-pure mb-4">Отзывы</h2>
                 <p class="text-gray-500 uppercase tracking-widest text-xs font-bold">Листайте, чтобы увидеть больше</p>
             </div>
 
             <div class="flex overflow-x-auto md:grid md:grid-cols-3 lg:grid-cols-3 gap-6 px-4 pb-10 hide-scroll fade-in-section justify-center">
                 <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img src="photo_10_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                    <img loading="lazy" src="photo_10_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
                 <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img src="photo_11_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                    <img loading="lazy" src="photo_11_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
                 <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img src="photo_12_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                    <img loading="lazy" src="photo_12_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
                 <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img src="photo_13_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                    <img loading="lazy" src="photo_13_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
                  <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img src="photo_2026-01-24_19-15-52.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                    <img loading="lazy" src="photo_2026-01-24_19-15-52.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
                  <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img src="photo_4_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                    <img loading="lazy" src="photo_4_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
             </div>
         </div>
@@ -318,22 +323,90 @@
         <div class="container mx-auto px-4 relative z-10 text-center max-w-4xl fade-in-section">
             <h2 class="text-3xl md:text-5xl font-semibold mb-12 leading-tight text-dark">
                 Этот урок не о быстром и легком результате, этот урок о <br>
-                <span class="text-gold-bordered font-script text-6xl block mt-4 p-2">годах наработанной практики.</span>
+                <!-- Убрал обводку -->
+                <span class="text-gold-pure font-script text-6xl block mt-4 p-2">годах наработанной практики.</span>
             </h2>
             
             <div class="relative inline-block group">
                 <div class="absolute inset-0 bg-gold rounded-full blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse"></div>
-                <a href="https://www.youtube.com/watch?v=gv2n5DqWb2Y" target="_blank" class="relative inline-block px-16 py-6 text-xl font-bold tracking-widest text-white bg-gold rounded-full shadow-2xl hover:bg-[#b5952f] transition-all transform hover:-translate-y-1">
+                <button onclick="openModal()" class="relative inline-block px-16 py-6 text-xl font-bold tracking-widest text-white bg-gold rounded-full shadow-2xl hover:bg-[#b5952f] transition-all transform hover:-translate-y-1">
                     СМОТРЕТЬ УРОК
-                </a>
+                </button>
             </div>
 
             <p class="mt-16 text-gray-400 font-script text-3xl opacity-60">Anna & ResinStart © 2024</p>
         </div>
     </section>
 
-    <!-- Скрипт анимации -->
+    <!-- MODAL POPUP FORM -->
+    <div id="leadModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="closeModal()"></div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-3xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-4 border-gold">
+                    
+                    <!-- Close button -->
+                    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors z-20">
+                        <i class="fa-solid fa-xmark text-2xl"></i>
+                    </button>
+
+                    <div class="px-6 py-8 sm:p-10">
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold leading-6 text-dark" id="modal-title">Получить доступ</h3>
+                            <p class="mt-2 text-sm text-gray-500">Заполните форму, чтобы смотреть урок</p>
+                        </div>
+                        
+                        <form id="leadForm" class="space-y-6">
+                            <!-- Name -->
+                            <div>
+                                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Ваше имя</label>
+                                <div class="mt-2">
+                                    <input type="text" name="name" id="name" placeholder="Анна" required 
+                                    class="block w-full rounded-md border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gold sm:text-sm sm:leading-6 transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div>
+                                <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Номер телефона</label>
+                                <div class="mt-2">
+                                    <input type="tel" name="phone" id="phone" required
+                                    class="block w-full rounded-md border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gold sm:text-sm sm:leading-6 transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Telegram -->
+                            <div>
+                                <label for="telegram" class="block text-sm font-medium leading-6 text-gray-900">Telegram</label>
+                                <div class="mt-2">
+                                    <input type="text" name="telegram" id="telegram" placeholder="@username" required 
+                                    class="block w-full rounded-md border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gold sm:text-sm sm:leading-6 transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Error Message -->
+                            <div id="formError" class="hidden text-red-500 text-sm text-center font-medium animate-pulse">
+                                Пожалуйста, исправьте ошибки в форме
+                            </div>
+
+                            <div>
+                                <button type="submit" id="submitBtn" class="flex w-full justify-center rounded-full bg-gold px-3 py-4 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#b5952f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition-all hover:scale-[1.02]">
+                                    <span id="btnText">Отправить и смотреть</span>
+                                    <i class="fa-solid fa-spinner fa-spin ml-2 hidden" id="btnLoader"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script>
+        // === 1. Анимация появления блоков ===
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -342,9 +415,122 @@
                     }
                 });
             }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in-section').forEach(section => observer.observe(section));
+        });
 
-            document.querySelectorAll('.fade-in-section').forEach(section => {
-                observer.observe(section);
+        // === 2. Логика Модального окна ===
+        const modal = document.getElementById('leadModal');
+        
+        function openModal() {
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Блокируем скролл фона
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // === 3. Настройка телефона (intl-tel-input) ===
+        const phoneInput = document.querySelector("#phone");
+        
+        // Список стран Европы (ISO коды)
+        const europeIsoCodes = [
+             "ua", "pl", "de", "fr", "it", "es", "pt", "nl", "be", "ch", "at", "se", "no", "fi", "dk", 
+             "ie", "gb", "gr", "cz", "ro", "hu", "sk", "bg", "hr", "si", "ee", "lv", "lt", "cy", "mt", 
+             "is", "lu", "li", "mc", "ad", "sm", "va", "ba", "rs", "me", "mk", "al", "md"
+        ];
+
+        const iti = window.intlTelInput(phoneInput, {
+            initialCountry: "auto",
+            geoIpLookup: callback => {
+                fetch("https://ipapi.co/json")
+                .then(res => res.json())
+                .then(data => callback(data.country_code))
+                .catch(() => callback("ua")); // Default to Ukraine on error
+            },
+            excludeCountries: ["ru", "by"], // Исключаем РФ и РБ
+            onlyCountries: europeIsoCodes, // Только Европа (опционально, можно убрать если нужны и США)
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+            separateDialCode: true,
+            allowDropdown: true,
+        });
+
+        // === 4. Валидация и Отправка ===
+        const form = document.getElementById('leadForm');
+        const nameInput = document.getElementById('name');
+        const telegramInput = document.getElementById('telegram');
+        const formError = document.getElementById('formError');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnLoader = document.getElementById('btnLoader');
+
+        // Ссылка на Google Web App
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvBkvurFe1udD2bhAPNLFRikvyrgPHlTiyUlGstXk28uu-yScI996FbWSKR10_C0Yw/exec'; 
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            formError.classList.add('hidden');
+            nameInput.classList.remove('ring-red-500', 'animate-shake');
+            phoneInput.classList.remove('ring-red-500', 'animate-shake');
+            telegramInput.classList.remove('ring-red-500', 'animate-shake');
+
+            // 4.1 Валидация Имени (Нет цифр)
+            const nameValue = nameInput.value;
+            if (/\d/.test(nameValue)) {
+                isValid = false;
+                nameInput.classList.add('ring-2', 'ring-red-500', 'animate-shake');
+                setTimeout(() => nameInput.classList.remove('animate-shake'), 820);
+            }
+
+            // 4.2 Валидация Телефона
+            if (!iti.isValidNumber()) {
+                isValid = false;
+                // Находим родительский контейнер intl-tel-input для подсветки
+                phoneInput.closest('.iti').classList.add('ring-2', 'ring-red-500', 'rounded-md', 'animate-shake');
+                setTimeout(() => phoneInput.closest('.iti').classList.remove('animate-shake'), 820);
+            }
+
+            // 4.3 Валидация Telegram (Начинается с @)
+            const telegramValue = telegramInput.value.trim();
+            if (!telegramValue.startsWith('@') || telegramValue.length < 2) {
+                isValid = false;
+                telegramInput.classList.add('ring-2', 'ring-red-500', 'animate-shake');
+                setTimeout(() => telegramInput.classList.remove('animate-shake'), 820);
+            }
+
+            if (!isValid) {
+                formError.classList.remove('hidden');
+                return;
+            }
+
+            // 4.4 Отправка данных
+            btnText.textContent = 'Отправка...';
+            btnLoader.classList.remove('hidden');
+            submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('name', nameValue);
+            formData.append('phone', iti.getNumber());
+            formData.append('country', iti.getSelectedCountryData().name);
+            formData.append('telegram', telegramValue);
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' 
+            })
+            .then(() => {
+                // Успех -> Переход на Telegram Бот
+                window.location.href = "https://t.me/anna_epoxy_bot?start=6979acfcad67a35abe0d98ad";
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('Произошла ошибка при отправке. Попробуйте еще раз.');
+                btnText.textContent = 'Отправить и смотреть';
+                btnLoader.classList.add('hidden');
+                submitBtn.disabled = false;
             });
         });
     </script>
