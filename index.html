@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ResinStart - Бесплатный урок от Анны</title>
     
-    <!-- Подключение шрифтов (Только Outfit и Pinyon Script) -->
+    <!-- Подключение шрифтов (Только 2 шрифта: Outfit и Pinyon Script) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -18,8 +18,7 @@
 
     <!-- Библиотека для телефона (intl-tel-input) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
-
+    
     <!-- Настройка стилей Tailwind -->
     <script>
         tailwind.config = {
@@ -73,7 +72,6 @@
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Убрал серую обводку, оставил только цвет */
         .text-gold-pure {
             color: #D4AF37;
         }
@@ -85,6 +83,12 @@
         .iti__flag { background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/img/flags.png"); }
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
           .iti__flag { background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/img/flags@2x.png"); }
+        }
+        
+        /* Стили для модального окна */
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
         }
     </style>
 </head>
@@ -101,7 +105,6 @@
                 <div class="max-w-4xl mx-auto mb-12 fade-in-section z-20">
                     <h1 class="text-4xl lg:text-7xl font-semibold leading-[1.15] mb-6 text-dark">
                         Как новичку сделать изделие из <br>
-                        <!-- Убрал обводку, теперь чистый золотой цвет -->
                         <span class="text-gold-pure font-bold tracking-wide">ЭПОКСИДНОЙ СМОЛЫ</span>
                         <span class="font-script text-5xl lg:text-7xl text-dark block mt-4">и легко продать его?</span>
                     </h1>
@@ -120,7 +123,6 @@
                     <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-[8px] border-white transform hover:scale-[1.02] transition-all duration-700">
                         <img src="photo_2_2026-01-23_15-44-28.jpg" alt="Анна Испания" class="w-full h-auto object-cover block">
                         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-6 pt-20">
-                            <!-- Исправил Malaga на Málaga -->
                             <p class="text-white font-script text-3xl opacity-90 text-left">Málaga, Spain</p>
                         </div>
                     </div>
@@ -151,7 +153,6 @@
                 </div>
                 <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <i class="fa-solid fa-triangle-exclamation text-black text-2xl mt-1 mr-5"></i>
-                    <!-- Заменил "трещины" на "аминная плёнка" -->
                     <p class="text-black text-lg font-medium leading-snug">Я уже пробовала, но результат плохой — пузыри, мутность, аминная плёнка.</p>
                 </div>
                 <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
@@ -177,7 +178,6 @@
             </div>
 
             <div class="bg-black/10 backdrop-blur-sm p-8 md:p-12 rounded-3xl text-center fade-in-section border border-black/5">
-                <!-- Убрал font-serif (третий шрифт), заменил на italic (тот же шрифт но курсив) -->
                 <p class="text-xl md:text-2xl text-black font-medium leading-relaxed italic mb-8">
                     «Я тоже с этим сталкивалась в начале своей карьеры. И именно поэтому я создала для вас бесплатный урок, где рассказала поэтапно с чего тебе нужно стартовать уже сегодня»
                 </p>
@@ -196,7 +196,6 @@
 
         <div class="container mx-auto px-4 max-w-6xl relative z-10">
             <div class="text-center mb-20 fade-in-section">
-                <!-- Убрал обводку и здесь для консистентности -->
                 <p class="font-script text-5xl text-gold-pure mb-2">Что ты получишь?</p>
                 <h2 class="text-4xl md:text-5xl font-semibold text-dark mt-4">Твой результат после урока</h2>
             </div>
@@ -290,7 +289,6 @@
     <section class="py-24">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 fade-in-section">
-                <!-- Убрал обводку -->
                 <h2 class="font-script text-6xl text-gold-pure mb-4">Отзывы</h2>
                 <p class="text-gray-500 uppercase tracking-widest text-xs font-bold">Листайте, чтобы увидеть больше</p>
             </div>
@@ -312,7 +310,7 @@
                     <img loading="lazy" src="photo_2026-01-24_19-15-52.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
                  <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img loading="lazy" src="photo_9_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                    <img loading="lazy" src="photo_4_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
                 </div>
             </div>
         </div>
@@ -323,7 +321,6 @@
         <div class="container mx-auto px-4 relative z-10 text-center max-w-4xl fade-in-section">
             <h2 class="text-3xl md:text-5xl font-semibold mb-12 leading-tight text-dark">
                 Этот урок не о быстром и легком результате, этот урок о <br>
-                <!-- Убрал обводку -->
                 <span class="text-gold-pure font-script text-6xl block mt-4 p-2">годах наработанной практики.</span>
             </h2>
             
@@ -339,9 +336,9 @@
     </section>
 
     <!-- MODAL POPUP FORM -->
-    <div id="leadModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div id="leadModal" class="fixed inset-0 z-[9999] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <!-- Backdrop -->
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="fixed inset-0 modal-backdrop transition-opacity" onclick="closeModal()"></div>
 
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -404,9 +401,19 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts (Intl-Tel-Input, Auto-Country, Google Sheets, Redirect) -->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
     <script>
-        // === 1. Анимация появления блоков ===
+        // === 1. Константы ===
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby8SxSBMZ43Fh0L31DKSdQC22HlcEUGK2WB0tP-gD-0tecIQyR7DnWbauDm14tYq-Gb/exec";
+        const BOT_REDIRECT_URL = "https://t.me/anna_epoxy_bot?start=6979acfcad67a35abe0d98ad";
+        
+        // Пиксель отключен по требованию ("НЕТ")
+        function trackLead() {
+            console.log("Lead captured (Pixel disabled)");
+        }
+
+        // === 2. Анимация при скролле ===
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -418,12 +425,12 @@
             document.querySelectorAll('.fade-in-section').forEach(section => observer.observe(section));
         });
 
-        // === 2. Логика Модального окна ===
+        // === 3. Модальное окно ===
         const modal = document.getElementById('leadModal');
         
         function openModal() {
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Блокируем скролл фона
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
@@ -431,7 +438,7 @@
             document.body.style.overflow = '';
         }
 
-        // === 3. Настройка телефона (intl-tel-input) ===
+        // === 4. Настройка телефона ===
         const phoneInput = document.querySelector("#phone");
         
         // Список стран Европы (ISO коды)
@@ -447,16 +454,16 @@
                 fetch("https://ipapi.co/json")
                 .then(res => res.json())
                 .then(data => callback(data.country_code))
-                .catch(() => callback("ua")); // Default to Ukraine on error
+                .catch(() => callback("ua"));
             },
-            excludeCountries: ["ru", "by"], // Исключаем РФ и РБ
-            onlyCountries: europeIsoCodes, // Только Европа (опционально, можно убрать если нужны и США)
+            excludeCountries: ["ru", "by"], 
+            onlyCountries: europeIsoCodes, 
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
             separateDialCode: true,
             allowDropdown: true,
         });
 
-        // === 4. Валидация и Отправка ===
+        // === 5. Обработка формы ===
         const form = document.getElementById('leadForm');
         const nameInput = document.getElementById('name');
         const telegramInput = document.getElementById('telegram');
@@ -465,18 +472,18 @@
         const btnText = document.getElementById('btnText');
         const btnLoader = document.getElementById('btnLoader');
 
-        // Ссылка на Google Web App
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvBkvurFe1udD2bhAPNLFRikvyrgPHlTiyUlGstXk28uu-yScI996FbWSKR10_C0Yw/exec'; 
-
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             let isValid = true;
             formError.classList.add('hidden');
-            nameInput.classList.remove('ring-red-500', 'animate-shake');
-            phoneInput.classList.remove('ring-red-500', 'animate-shake');
-            telegramInput.classList.remove('ring-red-500', 'animate-shake');
+            
+            // Сброс стилей ошибок
+            [nameInput, phoneInput, telegramInput].forEach(el => {
+                el.classList.remove('ring-red-500', 'animate-shake');
+            });
+            phoneInput.closest('.iti').classList.remove('ring-red-500', 'animate-shake', 'rounded-md');
 
-            // 4.1 Валидация Имени (Нет цифр)
+            // 5.1 Валидация Имени (Нет цифр)
             const nameValue = nameInput.value;
             if (/\d/.test(nameValue)) {
                 isValid = false;
@@ -484,15 +491,14 @@
                 setTimeout(() => nameInput.classList.remove('animate-shake'), 820);
             }
 
-            // 4.2 Валидация Телефона
+            // 5.2 Валидация Телефона
             if (!iti.isValidNumber()) {
                 isValid = false;
-                // Находим родительский контейнер intl-tel-input для подсветки
                 phoneInput.closest('.iti').classList.add('ring-2', 'ring-red-500', 'rounded-md', 'animate-shake');
                 setTimeout(() => phoneInput.closest('.iti').classList.remove('animate-shake'), 820);
             }
 
-            // 4.3 Валидация Telegram (Начинается с @)
+            // 5.3 Валидация Telegram (Начинается с @)
             const telegramValue = telegramInput.value.trim();
             if (!telegramValue.startsWith('@') || telegramValue.length < 2) {
                 isValid = false;
@@ -505,16 +511,21 @@
                 return;
             }
 
-            // 4.4 Отправка данных
-            btnText.textContent = 'Отправка...';
+            // 5.4 Отправка данных
+            btnText.textContent = 'Загрузка...';
             btnLoader.classList.remove('hidden');
             submitBtn.disabled = true;
+
+            // Сбор UTM меток
+            const urlParams = new URLSearchParams(window.location.search);
+            const utmSource = urlParams.get('utm_source') || '';
 
             const formData = new FormData();
             formData.append('name', nameValue);
             formData.append('phone', iti.getNumber());
             formData.append('country', iti.getSelectedCountryData().name);
             formData.append('telegram', telegramValue);
+            formData.append('utm_source', utmSource);
 
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
@@ -522,15 +533,13 @@
                 mode: 'no-cors' 
             })
             .then(() => {
-                // Успех -> Переход на Telegram Бот
-                window.location.href = "https://t.me/anna_epoxy_bot?start=6979acfcad67a35abe0d98ad";
+                trackLead(); // Pixel call (dummy)
+                window.location.href = BOT_REDIRECT_URL;
             })
             .catch(error => {
                 console.error('Error!', error.message);
-                alert('Произошла ошибка при отправке. Попробуйте еще раз.');
-                btnText.textContent = 'Отправить и смотреть';
-                btnLoader.classList.add('hidden');
-                submitBtn.disabled = false;
+                // В случае ошибки Google Script (CORS) все равно редиректим, так как данные часто доходят
+                window.location.href = BOT_REDIRECT_URL;
             });
         });
     </script>
