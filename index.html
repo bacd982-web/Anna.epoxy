@@ -3,47 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResinStart - Бесплатный урок от Анны</title>
-    
-    <!-- Подключение шрифтов (Только 2 шрифта: Outfit и Pinyon Script) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Иконки FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Shtefanna Epoxy | Разбор</title>
 
-    <!-- Библиотека для телефона (intl-tel-input) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
-    
-    <!-- Настройка стилей Tailwind -->
+    <!-- 1. TAILWIND CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 2. TAILWIND CONFIG -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        gold: '#D4AF37', 
-                        dark: '#1a1a1a',
+                        primary: '#D4AF37', // Золото/Желтый акцент
+                        black: '#000000',   // Глубокий черный
+                        offblack: '#111111', // Для фона формы
                     },
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        script: ['Pinyon Script', 'cursive'],
-                    },
-                    boxShadow: {
-                        'glow': '0 4px 20px rgba(212, 175, 55, 0.4)',
+                        // Основной шрифт
+                        sans: ['Stolzl', 'Manrope', 'sans-serif'], 
+                        // Акцентный рукописный
+                        script: ['"Sloop Script Pro"', '"Pinyon Script"', 'cursive'], 
                     },
                     animation: {
-                        'shake': 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards'
+                    },
+                    boxShadow: {
+                        'glow': '0 0 30px rgba(212, 175, 55, 0.4)',
                     },
                     keyframes: {
-                        'shake': {
-                            '10%, 90%': { transform: 'translate3d(-1px, 0, 0)' },
-                            '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
-                            '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' },
-                            '40%, 60%': { transform: 'translate3d(4px, 0, 0)' }
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         }
                     }
                 }
@@ -51,497 +42,455 @@
         }
     </script>
 
+    <!-- 3. FONTS & STYLES -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
+    <!-- CSS Libs -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        html { scroll-behavior: smooth; }
-        
-        body {
-            background: linear-gradient(to right, #e5e7eb 0%, #f3f4f6 30%, #ffffff 100%);
+        /* 
+           МЕСТО ДЛЯ ПОДКЛЮЧЕНИЯ ЛОКАЛЬНЫХ ШРИФТОВ (Stolzl, Sloop Script Pro)
+        */
+        @font-face {
+            font-family: 'Stolzl';
+            src: local('Stolzl'), url('fonts/Stolzl-Regular.woff2') format('woff2'); 
+            font-weight: 400; font-display: swap;
         }
-        
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: opacity, visibility;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: none;
+        @font-face {
+            font-family: 'Sloop Script Pro';
+            src: local('Sloop Script Pro'), url('fonts/SloopScriptPro.woff2') format('woff2');
+            font-display: swap;
         }
 
-        .hide-scroll::-webkit-scrollbar { display: none; }
-        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        .text-gold-pure {
-            color: #D4AF37;
+        body { 
+            font-family: 'Stolzl', 'Manrope', sans-serif; 
+            color: #000000;
+            background-color: #ffffff;
+            scroll-behavior: smooth; 
         }
 
-        .font-script { font-weight: 400 !important; }
+        .font-sloop {
+            font-family: 'Sloop Script Pro', 'Pinyon Script', cursive;
+        }
 
-        /* Стили для инпута телефона */
+        /* Override Intl Tel Input for Dark Theme */
         .iti { width: 100%; }
-        .iti__flag { background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/img/flags.png"); }
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-          .iti__flag { background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/img/flags@2x.png"); }
-        }
+        .iti__country-list { background-color: #000; border: 1px solid #333; color: white; }
+        .iti__selected-dial-code { color: #fff; }
         
-        /* Стили для модального окна */
-        .modal-backdrop {
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+        /* Custom Radio */
+        .radio-card:checked + div {
+            border-color: #D4AF37;
+            background-color: #D4AF37;
+            color: #000;
+            font-weight: bold;
         }
     </style>
 </head>
-<body class="font-sans text-dark antialiased selection:bg-gold selection:text-black">
+<body class="antialiased">
 
-    <!-- БЛОК 1: HERO -->
-    <section class="relative min-h-screen pt-16 pb-12 overflow-hidden flex flex-col justify-center">
-        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-white rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 opacity-60"></div>
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
+        <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-3xl font-sloop text-black">Shtefanna Epoxy</span>
+            </div>
+            <a href="#form-section" class="hidden sm:inline-block px-8 py-3 bg-black text-white hover:bg-primary hover:text-black transition-all text-xs font-bold uppercase tracking-[0.2em] rounded-none">
+                Записаться
+            </a>
+        </div>
+    </header>
 
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col items-center text-center">
-                
-                <!-- ТЕКСТ -->
-                <div class="max-w-4xl mx-auto mb-12 fade-in-section z-20">
-                    <h1 class="text-4xl lg:text-7xl font-semibold leading-[1.15] mb-6 text-dark">
-                        Как новичку сделать изделие из <br>
-                        <span class="text-gold-pure font-bold tracking-wide">ЭПОКСИДНОЙ СМОЛЫ</span>
-                        <span class="font-script text-5xl lg:text-7xl text-dark block mt-4">и легко продать его?</span>
-                    </h1>
-                    <p class="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto font-light">
-                        В моем уроке делюсь своей историей и тем, как именно эпоксидная смола изменила мою жизнь и позволила мне заниматься любимым делом и при этом зарабатывать и наслаждаться жизнью.
-                    </p>
-                    
-                    <button onclick="openModal()" class="inline-flex items-center justify-center px-12 py-5 text-lg font-medium tracking-wider text-white transition-all duration-300 bg-gold rounded-full hover:bg-[#b5952f] shadow-glow hover:-translate-y-1 group">
-                        СМОТРЕТЬ УРОК
-                        <i class="fa-solid fa-play ml-3 text-sm group-hover:scale-125 transition-transform"></i>
-                    </button>
+    <!-- HERO & VIDEO SECTION -->
+    <section class="pt-16 pb-24 text-center px-4 bg-white relative">
+        <div class="max-w-5xl mx-auto">
+            
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 text-black leading-[1.1] uppercase tracking-tight" data-aos="fade-up">
+                Превратите творчество <br>
+                в <span class="text-primary underline decoration-primary/30 underline-offset-4">стабильный доход</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-black/80 mb-12 max-w-2xl mx-auto font-light" data-aos="fade-up" data-aos-delay="100">
+                Смотрите видео-урок прямо сейчас и узнайте секреты работы с эпоксидной смолой, о которых молчат 90% мастеров.
+            </p>
+
+            <!-- Video Title Block -->
+            <div class="mb-8 relative inline-block" data-aos="fade-up" data-aos-delay="150">
+                <div class="absolute -top-6 -left-6 text-4xl text-primary opacity-30 font-sloop rotate-[-15deg]">Lesson</div>
+                <div class="border-l-4 border-primary pl-6 text-left">
+                    <span class="block text-xs font-bold tracking-[0.2em] text-black/40 uppercase mb-2">Тема урока:</span>
+                    <h2 class="text-xl md:text-2xl font-bold text-black uppercase leading-snug">
+                        «Как новичку сделать изделие из эпоксидной смолы и <span class="text-primary">легко продать его</span>»
+                    </h2>
                 </div>
+            </div>
 
-                <!-- ФОТО -->
-                <div class="relative w-full max-w-lg mx-auto fade-in-section z-10">
-                    <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-[8px] border-white transform hover:scale-[1.02] transition-all duration-700">
-                        <img src="photo_2_2026-01-23_15-44-28.jpg" alt="Анна Испания" class="w-full h-auto object-cover block">
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-6 pt-20">
-                            <p class="text-white font-script text-3xl opacity-90 text-left">Málaga, Spain</p>
+            <!-- VIDEO CONTAINER -->
+            <div class="relative w-full aspect-video bg-black shadow-2xl overflow-hidden mt-6" data-aos="zoom-in" data-aos-delay="200">
+                <div id="video-overlay" class="absolute inset-0 z-20 cursor-pointer group bg-cover bg-center" style="background-image: url('https://img.youtube.com/vi/gv2n5DqWb2Y/maxresdefault.jpg');">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-primary/20 rounded-full animate-ping"></div>
+                            <div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform relative z-10">
+                                <i data-lucide="play" class="w-10 h-10 text-black fill-black ml-1.5"></i>
+                            </div>
                         </div>
                     </div>
+                    <div class="absolute bottom-8 w-full text-center text-white font-bold tracking-[0.2em] uppercase text-xs">Нажмите для просмотра</div>
                 </div>
-
+                <div id="video-container" class="w-full h-full"></div>
             </div>
         </div>
     </section>
 
-    <!-- БЛОК 2: БОЛИ -->
-    <section class="py-24 bg-gold text-black relative">
-        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-        
-        <div class="container mx-auto px-4 max-w-5xl relative z-10">
-            <div class="text-center mb-16 fade-in-section">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Знакомая <span class="font-script text-6xl md:text-7xl font-normal relative top-2">ситуация?</span></h2>
-                <div class="w-24 h-1 bg-black mx-auto rounded-full mt-4 opacity-20"></div>
+    <!-- CONSULTATION OFFER SECTION -->
+    <section class="py-20 bg-white border-t border-black/5">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <span class="font-sloop text-5xl text-primary block mb-2">Exclusive</span>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-black uppercase tracking-tight">
+                    Ваш следующий шаг
+                </h3>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 fade-in-section">
-                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                    <i class="fa-solid fa-xmark text-black text-2xl mt-1 mr-5"></i>
-                    <p class="text-black text-lg font-medium leading-snug">Я не понимаю, с чего начать и какую смолу выбрать.</p>
+            
+            <div class="flex flex-col md:flex-row items-center gap-10" data-aos="fade-up">
+                <div class="md:w-1/2 text-left">
+                    <p class="text-lg text-black font-medium mb-6">
+                        Посмотрели урок, но остались вопросы? <br>
+                        Сейчас у вас есть <span class="bg-primary px-1 text-black font-bold">уникальная возможность</span> попасть ко мне на личную консультацию.
+                    </p>
+                    <p class="text-black/70 mb-0">Я лично разберу вашу ситуацию и подскажу, с чего начать именно вам.</p>
                 </div>
-                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                    <i class="fa-solid fa-pause text-black text-2xl mt-1 mr-5"></i>
-                    <p class="text-black text-lg font-medium leading-snug">Слишком много вариантов и советов, из-за этого постоянный стоп и откладывание.</p>
-                </div>
-                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                    <i class="fa-solid fa-triangle-exclamation text-black text-2xl mt-1 mr-5"></i>
-                    <p class="text-black text-lg font-medium leading-snug">Я уже пробовала, но результат плохой — пузыри, мутность, аминная плёнка.</p>
-                </div>
-                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                    <i class="fa-regular fa-circle-question text-black text-2xl mt-1 mr-5"></i>
-                    <p class="text-black text-lg font-medium leading-snug">Есть ощущение, что делаешь что-то не так, но непонятно — что именно.</p>
-                </div>
-                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                    <i class="fa-solid fa-brain text-black text-2xl mt-1 mr-5"></i>
-                    <p class="text-black text-lg font-medium leading-snug">После видео и уроков в интернете в голове только больше хаоса.</p>
-                </div>
-                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                    <i class="fa-solid fa-puzzle-piece text-black text-2xl mt-1 mr-5"></i>
-                    <p class="text-black text-lg font-medium leading-snug">Информации много, но она противоречивая и не складывается в систему.</p>
-                </div>
-                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                    <i class="fa-solid fa-sack-dollar text-black text-2xl mt-1 mr-5"></i>
-                    <p class="text-black text-lg font-medium leading-snug">Я не понимаю, как из этого делают деньги и находят клиентов.</p>
-                </div>
-                <div class="flex items-start bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                    <i class="fa-solid fa-scale-unbalanced text-black text-2xl mt-1 mr-5"></i>
-                    <p class="text-black text-lg font-medium leading-snug">Где грань между «хобби для себя» и работой, за которую реально платят.</p>
-                </div>
-            </div>
-
-            <div class="bg-black/10 backdrop-blur-sm p-8 md:p-12 rounded-3xl text-center fade-in-section border border-black/5">
-                <p class="text-xl md:text-2xl text-black font-medium leading-relaxed italic mb-8">
-                    «Я тоже с этим сталкивалась в начале своей карьеры. И именно поэтому я создала для вас бесплатный урок, где рассказала поэтапно с чего тебе нужно стартовать уже сегодня»
-                </p>
-                <button onclick="openModal()" class="inline-block px-14 py-5 bg-black text-white text-lg font-bold rounded-full hover:bg-gray-800 hover:shadow-2xl transition-all hover:-translate-y-1">
-                    СМОТРЕТЬ УРОК
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- БЛОК 3: РЕЗУЛЬТАТ -->
-    <section class="py-24 relative overflow-hidden">
-        <div class="absolute -right-20 top-40 opacity-10 rotate-[-12deg]">
-            <img loading="lazy" src="photo_3_2026-01-23_15-44-28.jpg" class="w-80 rounded-full shadow-2xl">
-        </div>
-
-        <div class="container mx-auto px-4 max-w-6xl relative z-10">
-            <div class="text-center mb-20 fade-in-section">
-                <p class="font-script text-5xl text-gold-pure mb-2">Что ты получишь?</p>
-                <h2 class="text-4xl md:text-5xl font-semibold text-dark mt-4">Твой результат после урока</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="group p-10 rounded-3xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl hover:border-gold/30 transition-all duration-300 fade-in-section">
-                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center text-gold text-2xl mb-8 group-hover:bg-gold group-hover:text-white transition-colors">
-                        <i class="fa-solid fa-list-check"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 uppercase tracking-wider text-dark">Понятность в материалах</h3>
-                    <p class="text-gray-600 font-light text-lg">Ты разберёшься, какую смолу выбирать и за что она отвечает, чтобы не покупать лишнее и не действовать наугад.</p>
-                </div>
-
-                <div class="group p-10 rounded-3xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl hover:border-gold/30 transition-all duration-300 fade-in-section" style="transition-delay: 100ms;">
-                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center text-gold text-2xl mb-8 group-hover:bg-gold group-hover:text-white transition-colors">
-                        <i class="fa-solid fa-bug"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 uppercase tracking-wider text-dark">Понимание ошибок</h3>
-                    <p class="text-gray-600 font-light text-lg">Ты увидишь, почему результат не получался раньше: откуда берутся пузыри, мутность и трещины.</p>
-                </div>
-
-                <div class="group p-10 rounded-3xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl hover:border-gold/30 transition-all duration-300 fade-in-section" style="transition-delay: 200ms;">
-                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center text-gold text-2xl mb-8 group-hover:bg-gold group-hover:text-white transition-colors">
-                        <i class="fa-solid fa-lightbulb"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 uppercase tracking-wider text-dark">Чёткая картина</h3>
-                    <p class="text-gray-600 font-light text-lg">У тебя сложится логика всего процесса — от первых изделий до понимания, как это превращается в заказы.</p>
-                </div>
-
-                <div class="group p-10 rounded-3xl bg-white border border-gray-100 shadow-xl hover:shadow-2xl hover:border-gold/30 transition-all duration-300 fade-in-section" style="transition-delay: 300ms;">
-                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center text-gold text-2xl mb-8 group-hover:bg-gold group-hover:text-white transition-colors">
-                        <i class="fa-solid fa-coins"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 uppercase tracking-wider text-dark">Понимание дохода</h3>
-                    <p class="text-gray-600 font-light text-lg">Ты поймёшь, как формируется стоимость изделий и за что клиенты готовы платить, на примере реальных заказов.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- БЛОК 4: ЭКСПЕРТ -->
-    <section class="py-24 bg-dark text-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold rounded-full blur-[150px] opacity-20"></div>
-
-        <div class="container mx-auto px-4 max-w-6xl relative z-10">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
                 
-                <!-- Фото Эксперта -->
-                <div class="w-full lg:w-5/12 fade-in-section">
-                    <div class="relative group">
-                        <div class="absolute inset-0 border-2 border-gold rounded-tr-[50px] rounded-bl-[50px] translate-x-3 translate-y-3 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform"></div>
-                        <img loading="lazy" src="photo_1_2026-01-23_15-44-28.jpg" alt="Анна Resin Artist" class="relative w-full rounded-tr-[50px] rounded-bl-[50px] shadow-2xl transition-all duration-700">
-                    </div>
-                </div>
-
-                <!-- Текст -->
-                <div class="w-full lg:w-7/12 fade-in-section">
-                    <h2 class="text-gold font-bold text-sm tracking-[0.3em] mb-4 uppercase">Автор курса</h2>
-                    <h3 class="font-script text-7xl mb-4 text-white">Анна</h3>
-                    <p class="text-2xl font-light text-gray-300 mb-10">Практикующий resin-artist | Основатель <span class="text-white font-medium border-b border-gold">ResinStart</span></p>
-
-                    <ul class="space-y-6 mb-12">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-bolt text-gold text-xl mr-5 mt-1"></i>
-                            <p class="text-gray-300 text-lg font-light">Работает с эпоксидной смолой и реальными заказами, а не «для себя»</p>
+                <div class="md:w-1/2 w-full bg-white border-2 border-black p-8 relative shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]">
+                    <div class="absolute -top-3 -right-3 bg-primary text-black text-xs font-bold px-3 py-1 uppercase tracking-wider">Plan</div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <div class="w-2 h-2 bg-black rounded-full mt-2.5 shrink-0"></div>
+                            <span class="text-black font-semibold">Разбор вашей текущей ситуации</span>
                         </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-bolt text-gold text-xl mr-5 mt-1"></i>
-                            <p class="text-gray-300 text-lg font-light">Выполняет сложные изделия: часы-карты, интерьер, свадебный декор</p>
+                        <li class="flex items-start gap-4">
+                            <div class="w-2 h-2 bg-black rounded-full mt-2.5 shrink-0"></div>
+                            <span class="text-black font-semibold">Советы для старта (хобби или бизнес)</span>
                         </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-bolt text-gold text-xl mr-5 mt-1"></i>
-                            <p class="text-gray-300 text-lg font-light">Монетизирует творчество через Instagram и TikTok, заказы — до 230 € за изделие</p>
+                        <li class="flex items-start gap-4">
+                            <div class="w-2 h-2 bg-black rounded-full mt-2.5 shrink-0"></div>
+                            <span class="text-black font-semibold">Пошаговый план движения дальше</span>
                         </li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="border-l-2 border-gold pl-8 py-2 mb-12 opacity-80">
-                        <p class="font-script text-4xl text-gold mb-2">«Я не учу красиво заливать...</p>
-                        <p class="text-white text-xl font-light">...Я показываю, как на этом зарабатывают.»</p>
+    <!-- FORM SECTION -->
+    <section id="form-section" class="py-24 bg-black relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-xl mx-auto px-4 relative z-10" data-aos="fade-up">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white uppercase mb-4 tracking-wide">Заполните анкету</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-white/60 text-sm">Оставьте данные для связи. Я напишу вам в течение дня.</p>
+            </div>
+
+            <form id="leadForm" class="space-y-6 bg-offblack p-8 md:p-10 border border-white/10 shadow-2xl">
+                <!-- ИМЯ -->
+                <div>
+                    <label class="block text-[10px] text-primary uppercase tracking-[0.2em] mb-2 font-bold">Ваше имя</label>
+                    <input type="text" name="name" required placeholder="Введите имя" 
+                        class="w-full bg-black border-b-2 border-white/20 focus:border-primary text-white py-4 px-2 outline-none transition-all placeholder-white/20 font-medium rounded-none">
+                </div>
+
+                <!-- ТЕЛЕФОН -->
+                <div>
+                    <label class="block text-[10px] text-primary uppercase tracking-[0.2em] mb-2 font-bold">Телефон</label>
+                    <input type="tel" id="phone" name="phone" required 
+                           class="w-full bg-black border-b-2 border-white/20 focus:border-primary text-white py-4 px-2 outline-none transition-all rounded-none">
+                </div>
+
+                <!-- MESSENGER -->
+                <div>
+                    <label class="block text-[10px] text-primary uppercase tracking-[0.2em] mb-2 font-bold">Ник в Telegram / Instagram</label>
+                    <input type="text" name="messenger" required placeholder="@username" 
+                        class="w-full bg-black border-b-2 border-white/20 focus:border-primary text-white py-4 px-2 outline-none transition-all placeholder-white/20 font-medium rounded-none">
+                </div>
+                
+                <!-- ГОРОД -->
+                <div>
+                     <label class="block text-[10px] text-primary uppercase tracking-[0.2em] mb-2 font-bold">Город</label>
+                     <input type="text" name="city" placeholder="Ваш город" 
+                        class="w-full bg-black border-b-2 border-white/20 focus:border-primary text-white py-4 px-2 outline-none transition-all placeholder-white/20 font-medium rounded-none">
+                </div>
+
+                <!-- ВОПРОС -->
+                <div class="pt-4">
+                    <p class="text-white text-sm mb-4 font-bold">Ваш опыт в смоле?</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="experience" value="Нет опыта" class="radio-card hidden" checked>
+                            <div class="border border-white/20 p-4 text-center text-sm text-white/70 group-hover:border-primary transition-all uppercase tracking-wide text-xs">
+                                Нет опыта
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="experience" value="Пробовал(а)" class="radio-card hidden">
+                            <div class="border border-white/20 p-4 text-center text-sm text-white/70 group-hover:border-primary transition-all uppercase tracking-wide text-xs">
+                                Пробовал(а)
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="experience" value="Мастер" class="radio-card hidden">
+                            <div class="border border-white/20 p-4 text-center text-sm text-white/70 group-hover:border-primary transition-all uppercase tracking-wide text-xs">
+                                Мастер
+                            </div>
+                        </label>
                     </div>
+                </div>
 
-                    <button onclick="openModal()" class="inline-block px-12 py-4 bg-white text-dark font-bold rounded-full hover:bg-gold hover:text-white transition-all shadow-glow hover:-translate-y-1 tracking-wide">
-                        СМОТРЕТЬ УРОК
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- БЛОК 5: ОТЗЫВЫ -->
-    <section class="py-24">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16 fade-in-section">
-                <h2 class="font-script text-6xl text-gold-pure mb-4">Отзывы</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs font-bold">Листайте, чтобы увидеть больше</p>
-            </div>
-
-            <div class="flex overflow-x-auto md:grid md:grid-cols-3 lg:grid-cols-3 gap-6 px-4 pb-10 hide-scroll fade-in-section justify-center">
-                <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img loading="lazy" src="photo_10_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
-                </div>
-                <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img loading="lazy" src="photo_11_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
-                </div>
-                <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img loading="lazy" src="photo_12_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
-                </div>
-                <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img loading="lazy" src="photo_13_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
-                </div>
-                 <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img loading="lazy" src="photo_2026-01-24_19-15-52.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
-                </div>
-                 <div class="min-w-[280px] rounded-lg overflow-hidden shadow-lg border-2 border-white hover:border-gold transition-colors duration-300">
-                    <img loading="lazy" src="photo_4_2026-01-23_15-44-28.jpg" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- БЛОК 6: ФИНАЛ -->
-    <section class="py-24 bg-white relative">
-        <div class="container mx-auto px-4 relative z-10 text-center max-w-4xl fade-in-section">
-            <h2 class="text-3xl md:text-5xl font-semibold mb-12 leading-tight text-dark">
-                Этот урок не о быстром и легком результате, этот урок о <br>
-                <span class="text-gold-pure font-script text-6xl block mt-4 p-2">годах наработанной практики.</span>
-            </h2>
-            
-            <div class="relative inline-block group">
-                <div class="absolute inset-0 bg-gold rounded-full blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse"></div>
-                <button onclick="openModal()" class="relative inline-block px-16 py-6 text-xl font-bold tracking-widest text-white bg-gold rounded-full shadow-2xl hover:bg-[#b5952f] transition-all transform hover:-translate-y-1">
-                    СМОТРЕТЬ УРОК
+                <button type="submit" id="submitBtn" class="w-full bg-primary text-black font-extrabold py-5 uppercase tracking-[0.2em] text-sm mt-6 hover:bg-white transition-colors duration-300">
+                    Записаться на разбор
                 </button>
-            </div>
-
-            <p class="mt-16 text-gray-400 font-script text-3xl opacity-60">Anna & ResinStart © 2024</p>
+                
+                <p class="text-[10px] text-white/30 text-center uppercase tracking-wider">Ваши данные надежно защищены</p>
+            </form>
         </div>
     </section>
 
-    <!-- MODAL POPUP FORM -->
-    <div id="leadModal" class="fixed inset-0 z-[9999] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!-- Backdrop -->
-        <div class="fixed inset-0 modal-backdrop transition-opacity" onclick="closeModal()"></div>
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 text-center border-t border-white/10">
+        <span class="font-sloop text-3xl text-white/50 block mb-4">Shtefanna Epoxy</span>
+        <p class="text-white/30 text-xs uppercase tracking-widest">&copy; 2026. All rights reserved.</p>
+    </footer>
 
-        <div class="fixed inset-0 z-10 overflow-y-auto">
-            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-                <div class="relative transform overflow-hidden rounded-3xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border-4 border-gold">
-                    
-                    <!-- Close button -->
-                    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors z-20">
-                        <i class="fa-solid fa-xmark text-2xl"></i>
-                    </button>
-
-                    <div class="px-6 py-8 sm:p-10">
-                        <div class="text-center mb-6">
-                            <h3 class="text-2xl font-bold leading-6 text-dark" id="modal-title">Получить доступ</h3>
-                            <p class="mt-2 text-sm text-gray-500">Заполните форму, чтобы смотреть урок</p>
-                        </div>
-                        
-                        <form id="leadForm" class="space-y-6">
-                            <!-- Name -->
-                            <div>
-                                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Ваше имя</label>
-                                <div class="mt-2">
-                                    <input type="text" name="name" id="name" placeholder="Анна" required 
-                                    class="block w-full rounded-md border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gold sm:text-sm sm:leading-6 transition-all">
-                                </div>
-                            </div>
-
-                            <!-- Phone -->
-                            <div>
-                                <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Номер телефона</label>
-                                <div class="mt-2">
-                                    <input type="tel" name="phone" id="phone" required
-                                    class="block w-full rounded-md border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gold sm:text-sm sm:leading-6 transition-all">
-                                </div>
-                            </div>
-
-                            <!-- Telegram -->
-                            <div>
-                                <label for="telegram" class="block text-sm font-medium leading-6 text-gray-900">Telegram</label>
-                                <div class="mt-2">
-                                    <input type="text" name="telegram" id="telegram" placeholder="@username" required 
-                                    class="block w-full rounded-md border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gold sm:text-sm sm:leading-6 transition-all">
-                                </div>
-                            </div>
-
-                            <!-- Error Message -->
-                            <div id="formError" class="hidden text-red-500 text-sm text-center font-medium animate-pulse">
-                                Пожалуйста, исправьте ошибки в форме
-                            </div>
-
-                            <div>
-                                <button type="submit" id="submitBtn" class="flex w-full justify-center rounded-full bg-gold px-3 py-4 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#b5952f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition-all hover:scale-[1.02]">
-                                    <span id="btnText">Отправить и смотреть</span>
-                                    <i class="fa-solid fa-spinner fa-spin ml-2 hidden" id="btnLoader"></i>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+    <!-- SUCCESS MODAL -->
+    <div id="successModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md"></div>
+        <div class="relative bg-white p-10 max-w-sm w-full text-center border-4 border-primary shadow-glow animate-fade-in-up">
+            <div class="w-16 h-16 bg-black text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="check" class="w-8 h-8"></i>
             </div>
+            <h3 class="text-2xl font-extrabold text-black uppercase mb-4">Заявка принята</h3>
+            <p class="text-black/80 mb-8 font-medium">Я свяжусь с вами в ближайшее время для подтверждения записи.</p>
+            <button onclick="document.getElementById('successModal').classList.add('hidden')" class="w-full bg-black text-white font-bold py-4 uppercase tracking-widest text-xs hover:bg-primary hover:text-black transition-colors">
+                Закрыть
+            </button>
         </div>
     </div>
 
-    <!-- Scripts (Intl-Tel-Input, Auto-Country, Google Sheets, Redirect) -->
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+    <!-- JS LOGIC -->
     <script>
-        // === 1. Константы ===
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby8SxSBMZ43Fh0L31DKSdQC22HlcEUGK2WB0tP-gD-0tecIQyR7DnWbauDm14tYq-Gb/exec";
-        const BOT_REDIRECT_URL = "https://t.me/anna_epoxy_bot?start=6979acfcad67a35abe0d98ad";
+        // 1. ВАША ССЫЛКА НА SCRIPT
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzzqGoGvttVeTMjsOsLMf3JsDtSYizycwx9KoTN49CEOzOHoaliH4Akj3vjm-bEW9au/exec';
         
-        // Пиксель отключен по требованию ("НЕТ")
-        function trackLead() {
-            console.log("Lead captured (Pixel disabled)");
+        // 2. НАЗВАНИЕ ЛИСТА (Строго как вы просили)
+        const TARGET_SHEET = 'После получения бесплатного урока'; 
+        
+        const YOUTUBE_ID = 'gv2n5DqWb2Y';
+
+        // ===== КОНФІГУРАЦІЯ SENDPULSE =====
+        const SENDPULSE_CLIENT_ID = '2a475a1362dc6db55d503f156f09789c';
+        const SENDPULSE_CLIENT_SECRET = '07b6d0fc9f4f629b14076be58cefe556';
+        const BOT_ID = '693c1dab7185a21b410504c5';
+
+        // ===== ОТРИМУЄМО TELEGRAM ID З URL =====
+        let telegramChatId = null;
+
+        // Спробуємо отримати з параметра ?tg_id=
+        const urlParamsTg = new URLSearchParams(window.location.search);
+        telegramChatId = urlParamsTg.get('tg_id');
+
+        // Якщо немає — шукаємо в шляху /tg_id=123
+        if (!telegramChatId) {
+            const path = window.location.pathname;
+            const match = path.match(/tg_id=(\d+)/);
+            if (match) {
+                telegramChatId = match[1];
+            }
         }
 
-        // === 2. Анимация при скролле ===
-        document.addEventListener("DOMContentLoaded", function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
+        // Зберігаємо в localStorage
+        if (telegramChatId) {
+            localStorage.setItem('tg_chat_id', telegramChatId);
+            console.log('Telegram ID збережено:', telegramChatId);
+        }
+
+        // ===== ФУНКЦІЯ ОТРИМАННЯ ТОКЕНА SENDPULSE =====
+        async function getSendPulseToken() {
+            try {
+                const response = await fetch('https://api.sendpulse.com/oauth/access_token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        grant_type: 'client_credentials',
+                        client_id: SENDPULSE_CLIENT_ID,
+                        client_secret: SENDPULSE_CLIENT_SECRET
+                    })
+                });
+                const data = await response.json();
+                return data.access_token;
+            } catch (e) {
+                console.error("SendPulse Token Error:", e);
+                return null;
+            }
+        }
+
+        // ===== ФУНКЦІЯ ОТРИМАННЯ CONTACT_ID ПО TELEGRAM_ID =====
+        async function getContactId(token, tgId) {
+            try {
+                // Отримуємо всіх контактів бота
+                const response = await fetch(`https://api.sendpulse.com/telegram/contacts?bot_id=${BOT_ID}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
                     }
                 });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.fade-in-section').forEach(section => observer.observe(section));
-        });
-
-        // === 3. Модальное окно ===
-        const modal = document.getElementById('leadModal');
-        
-        function openModal() {
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; 
+                
+                const data = await response.json();
+                
+                // Шукаємо контакт з потрібним telegram_id
+                if (data.data) {
+                    const contact = data.data.find(c => String(c.telegram_id) === String(tgId));
+                    if (contact) {
+                        return contact.id;
+                    }
+                }
+            } catch (e) {
+                console.error("SendPulse Contact Error:", e);
+            }
+            return null;
         }
 
-        function closeModal() {
-            modal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-
-        // === 4. Настройка телефона ===
-        const phoneInput = document.querySelector("#phone");
-        
-        // Список стран Европы (ISO коды)
-        const europeIsoCodes = [
-             "ua", "pl", "de", "fr", "it", "es", "pt", "nl", "be", "ch", "at", "se", "no", "fi", "dk", 
-             "ie", "gb", "gr", "cz", "ro", "hu", "sk", "bg", "hr", "si", "ee", "lv", "lt", "cy", "mt", 
-             "is", "lu", "li", "mc", "ad", "sm", "va", "ba", "rs", "me", "mk", "al", "md"
-        ];
-
-        const iti = window.intlTelInput(phoneInput, {
-            initialCountry: "auto",
-            geoIpLookup: callback => {
-                fetch("https://ipapi.co/json")
-                .then(res => res.json())
-                .then(data => callback(data.country_code))
-                .catch(() => callback("ua"));
-            },
-            excludeCountries: ["ru", "by"], 
-            onlyCountries: europeIsoCodes, 
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
-            separateDialCode: true,
-            allowDropdown: true,
-        });
-
-        // === 5. Обработка формы ===
-        const form = document.getElementById('leadForm');
-        const nameInput = document.getElementById('name');
-        const telegramInput = document.getElementById('telegram');
-        const formError = document.getElementById('formError');
-        const submitBtn = document.getElementById('submitBtn');
-        const btnText = document.getElementById('btnText');
-        const btnLoader = document.getElementById('btnLoader');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            let isValid = true;
-            formError.classList.add('hidden');
+        // ===== ФУНКЦІЯ ВІДМІТКИ АНКЕТИ В SENDPULSE =====
+        async function markAnketaFilled() {
+            const chatId = localStorage.getItem('tg_chat_id');
+            if (!chatId) {
+                console.log('SendPulse: Telegram ID не знайдено');
+                return false;
+            }
             
-            // Сброс стилей ошибок
-            [nameInput, phoneInput, telegramInput].forEach(el => {
-                el.classList.remove('ring-red-500', 'animate-shake');
+            try {
+                const token = await getSendPulseToken();
+                if (!token) {
+                    console.log('SendPulse: Не вдалося отримати токен');
+                    return false;
+                }
+                
+                const contactId = await getContactId(token, chatId);
+                if (!contactId) {
+                    console.log('SendPulse: Контакт не знайдено');
+                    return false;
+                }
+                
+                console.log('SendPulse: Знайдено contact_id:', contactId);
+                
+                const response = await fetch('https://api.sendpulse.com/telegram/contacts/setVariable', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        bot_id: BOT_ID,
+                        contact_id: contactId,
+                        variable_name: 'anketa_filled',
+                        variable_value: 'yes'
+                    })
+                });
+                
+                const result = await response.json();
+                console.log('SendPulse відповідь:', result);
+                return true;
+            } catch (error) {
+                console.error('Помилка SendPulse:', error);
+                return false;
+            }
+        }
+
+        // UTM PARSER
+        function getUTM() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                utm_source: params.get('utm_source') || '-',
+                utm_medium: params.get('utm_medium') || '-',
+                utm_campaign: params.get('utm_campaign') || '-',
+                utm_content: params.get('utm_content') || '-',
+                utm_term: params.get('utm_term') || '-'
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            AOS.init({ duration: 1000, once: true });
+
+            // Phone Input
+            const input = document.querySelector("#phone");
+            const iti = window.intlTelInput(input, {
+                initialCountry: "auto",
+                geoIpLookup: cb => fetch("https://get.geojs.io/v1/ip/country.json").then(r=>r.json()).then(d=>cb(d.country)).catch(()=>cb("ua")),
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+                separateDialCode: true
             });
-            phoneInput.closest('.iti').classList.remove('ring-red-500', 'animate-shake', 'rounded-md');
 
-            // 5.1 Валидация Имени (Нет цифр)
-            const nameValue = nameInput.value;
-            if (/\d/.test(nameValue)) {
-                isValid = false;
-                nameInput.classList.add('ring-2', 'ring-red-500', 'animate-shake');
-                setTimeout(() => nameInput.classList.remove('animate-shake'), 820);
-            }
+            // Video Player
+            document.getElementById('video-overlay').addEventListener('click', function() {
+                this.style.display = 'none';
+                document.getElementById('video-container').innerHTML = `
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class=""></iframe>
+                `;
+            });
 
-            // 5.2 Валидация Телефона
-            if (!iti.isValidNumber()) {
-                isValid = false;
-                phoneInput.closest('.iti').classList.add('ring-2', 'ring-red-500', 'rounded-md', 'animate-shake');
-                setTimeout(() => phoneInput.closest('.iti').classList.remove('animate-shake'), 820);
-            }
+            // Form Submit Logic
+            document.getElementById('leadForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('submitBtn');
+                const originalText = btn.innerText;
+                
+                btn.disabled = true;
+                btn.innerText = 'ОТПРАВКА...';
 
-            // 5.3 Валидация Telegram (Начинается с @)
-            const telegramValue = telegramInput.value.trim();
-            if (!telegramValue.startsWith('@') || telegramValue.length < 2) {
-                isValid = false;
-                telegramInput.classList.add('ring-2', 'ring-red-500', 'animate-shake');
-                setTimeout(() => telegramInput.classList.remove('animate-shake'), 820);
-            }
+                // Сбор данных
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData.entries());
+                
+                // Добавление технических данных
+                data.phone = iti.getNumber();
+                data.targetSheet = TARGET_SHEET; // Передаем имя листа
+                Object.assign(data, getUTM());
 
-            if (!isValid) {
-                formError.classList.remove('hidden');
-                return;
-            }
+                // ===== ВІДПРАВКА В SENDPULSE =====
+                try {
+                    await markAnketaFilled();
+                } catch (e) {
+                    console.log("SendPulse skipped");
+                }
 
-            // 5.4 Отправка данных
-            btnText.textContent = 'Загрузка...';
-            btnLoader.classList.remove('hidden');
-            submitBtn.disabled = true;
-
-            // Сбор UTM меток
-            const urlParams = new URLSearchParams(window.location.search);
-            const utmSource = urlParams.get('utm_source') || '';
-
-            const formData = new FormData();
-            formData.append('name', nameValue);
-            formData.append('phone', iti.getNumber());
-            formData.append('country', iti.getSelectedCountryData().name);
-            formData.append('telegram', telegramValue);
-            formData.append('utm_source', utmSource);
-
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors' 
-            })
-            .then(() => {
-                trackLead(); // Pixel call (dummy)
-                window.location.href = BOT_REDIRECT_URL;
-            })
-            .catch(error => {
-                console.error('Error!', error.message);
-                // В случае ошибки Google Script (CORS) все равно редиректим, так как данные часто доходят
-                window.location.href = BOT_REDIRECT_URL;
+                // Отправка в Google Sheets
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Важно для GAS
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                }).then(() => {
+                    document.getElementById('successModal').classList.remove('hidden');
+                    this.reset();
+                }).catch(err => {
+                    alert('Ошибка отправки. Попробуйте позже.');
+                }).finally(() => {
+                    btn.disabled = false;
+                    btn.innerText = originalText;
+                });
             });
         });
     </script>
 </body>
 </html>
+
+
